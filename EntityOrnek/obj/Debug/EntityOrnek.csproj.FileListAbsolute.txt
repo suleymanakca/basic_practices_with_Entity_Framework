@@ -1,0 +1,16 @@
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\bin\Debug\EntityOrnek.exe.config
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\bin\Debug\EntityOrnek.exe
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\bin\Debug\EntityOrnek.pdb
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\bin\Debug\EntityFramework.dll
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\bin\Debug\EntityFramework.xml
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\obj\Debug\EntityOrnek.csproj.AssemblyReference.cache
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\obj\Debug\EntityOrnek.csproj.SuggestedBindingRedirects.cache
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\obj\Debug\EntityOrnek.Form1.resources
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\obj\Debug\EntityOrnek.Properties.Resources.resources
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\obj\Debug\EntityOrnek.csproj.GenerateResource.cache
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\obj\Debug\EntityOrnek.csproj.CoreCompileInputs.cache
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\obj\Debug\EntityOrnek.csproj.CopyComplete
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\obj\Debug\EntityOrnek.exe
+C:\Users\bursa\Desktop\EntityOrnek\EntityOrnek\obj\Debug\EntityOrnek.pdb
