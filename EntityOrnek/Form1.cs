@@ -32,7 +32,7 @@ namespace EntityOrnek
 
         private void BtnDersListesi_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(@"your connection");
+            SqlConnection conn = new SqlConnection(@"Data Source=(localdb)\sakca;Initial Catalog=DbSinavOgrenci;Integrated Security=True");
             SqlCommand komut = new SqlCommand("Select * From tbldersler", conn);
             SqlDataAdapter da = new SqlDataAdapter(komut);
             DataTable dt = new DataTable();
@@ -52,8 +52,9 @@ namespace EntityOrnek
                         select new
                         {
                             item.NOTID,
-                            item.OGR,
-                            item.DERS,
+                            item.TBLOGRENCI.AD,
+                            item.TBLOGRENCI.SOYAD,
+                            item.TBLDERSLER.DERSAD,
                             item.SINAV1,
                             item.SINAV2,
                             item.SINAV3,
@@ -102,7 +103,7 @@ namespace EntityOrnek
 
             var degerler = from item in db.TBLOGRENCI
                            where item.AD.Contains(aranan)
-                           select item;    
+                           select item;
 
             dataGridView1.DataSource = degerler.ToList();
 
@@ -112,25 +113,98 @@ namespace EntityOrnek
 
         private void BtnLinqEntity_Click(object sender, EventArgs e)
         {
-            if(radioButton1.Checked == true)
+            if (radioButton1.Checked == true)
             {
-                List<TBLOGRENCI> liste1 = db.TBLOGRENCI.OrderBy(p=>p.AD).ToList();  
-                dataGridView1.DataSource = liste1;  
+                List<TBLOGRENCI> liste1 = db.TBLOGRENCI.OrderBy(p => p.AD).ToList();
+                dataGridView1.DataSource = liste1;
             }
 
-            if (radioButton2.Checked== true)
+            if (radioButton2.Checked == true)
             {
-                List<TBLOGRENCI> liste2 = db.TBLOGRENCI.OrderByDescending(p=>p.AD).ToList();
-                dataGridView1.DataSource=liste2;    
+                List<TBLOGRENCI> liste2 = db.TBLOGRENCI.OrderByDescending(p => p.AD).ToList();
+                dataGridView1.DataSource = liste2;
             }
 
-            if(radioButton3.Checked== true)
+            if (radioButton3.Checked == true)
             {
                 List<TBLOGRENCI> liste3 = db.TBLOGRENCI.OrderBy(p => p.AD).Take(3).ToList();
-                dataGridView1.DataSource = liste3;  
+                dataGridView1.DataSource = liste3;
             }
 
+            if (radioButton4.Checked == true)
+            {
+                List<TBLOGRENCI> liste4 = db.TBLOGRENCI.OrderByDescending(p => p.ID).ToList();
+                dataGridView1.DataSource = liste4;
+            }
 
+            if (radioButton5.Checked == true)
+            {
+                List<TBLOGRENCI> liste5 = db.TBLOGRENCI.Where(p => p.AD.StartsWith("A")).ToList();
+                dataGridView1.DataSource = liste5;
+            }
+
+            if (radioButton6.Checked == true)
+            {
+                List<TBLOGRENCI> liste6 = db.TBLOGRENCI.Where(p => p.AD.EndsWith("A")).ToList();
+                dataGridView1.DataSource = liste6;
+            }
+
+            if (radioButton7.Checked == true)
+            {
+                bool deger = db.TBLOGRENCI.Any();
+                MessageBox.Show(deger.ToString(), "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            if (radioButton8.Checked == true)
+            {
+                int toplam = db.TBLOGRENCI.Count();
+                MessageBox.Show(toplam.ToString(), "Toplam Öğrenci Sayısı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            if (radioButton9.Checked == true)
+            {
+                var toplam = db.TBLNOTLAR.Sum(p => p.SINAV1);
+                MessageBox.Show("Toplam Sınav 1 Notu: " + toplam.ToString());
+            }
+
+            if (radioButton10.Checked == true)
+            {
+                var ortalama = db.TBLNOTLAR.Average(p => p.SINAV1);
+                MessageBox.Show("Ortalama Sınav 1 Notu: " + ortalama.ToString());
+            }
+
+            if (radioButton11.Checked == true)
+            {
+                var max = db.TBLNOTLAR.Max(p => p.SINAV1);
+                MessageBox.Show("En yüksek sınav 1: " + max.ToString());
+            }
+
+            if (radioButton12.Checked == true)
+            {
+                var ortalama = db.TBLNOTLAR.Average(p => p.SINAV1);
+                List<TBLNOTLAR> liste7 = db.TBLNOTLAR.Where(p => p.SINAV1 > ortalama).ToList();
+                dataGridView1.DataSource = liste7;
+            }
+        }
+
+        private void BtnJoin_Click(object sender, EventArgs e)
+        {
+            var sorgu = from d1 in db.TBLNOTLAR
+                        join d2 in db.TBLOGRENCI
+                        on d1.OGR equals d2.ID
+                        join d3 in db.TBLDERSLER
+                        on d1.DERS equals d3.DERSID
+                        select new
+                        {
+                            ÖĞRENCİ = d2.AD + " " + d2.SOYAD,
+                            DERS = d3.DERSAD,
+                            SINAV1= d1.SINAV1,
+                            SINAV2 = d1.SINAV2,
+                            SINAV3 = d1.SINAV3,
+                            ORT = d1.ORTALAMA
+                        };
+
+            dataGridView1.DataSource = sorgu.ToList();
         }
     }
 }
