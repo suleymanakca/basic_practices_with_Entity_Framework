@@ -32,7 +32,7 @@ namespace EntityOrnek
 
         private void BtnDersListesi_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(@"Data Source=(localdb)\sakca;Initial Catalog=DbSinavOgrenci;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(@"Your Connection");
             SqlCommand komut = new SqlCommand("Select * From tbldersler", conn);
             SqlDataAdapter da = new SqlDataAdapter(komut);
             DataTable dt = new DataTable();
